@@ -31,6 +31,8 @@ fun AddStudentScreen(navController: NavController, studentViewModel: StudentView
                             studentViewModel.addStudent(Student(name = name, attendance = attendance))
                             Toast.makeText(context, "Student added successfully", Toast.LENGTH_SHORT).show()
                             navController.popBackStack() // Navigate back to list screen
+                        } else {
+                            Toast.makeText(context, "Name cannot be empty", Toast.LENGTH_SHORT).show()
                         }
                     }) {
                         Icon(Icons.Default.Check, contentDescription = "Save Student")
@@ -60,6 +62,7 @@ fun AddStudentScreen(navController: NavController, studentViewModel: StudentView
                     checked = attendance,
                     onCheckedChange = { attendance = it }
                 )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(text = if (attendance) "Present" else "Absent")
             }
 
@@ -71,6 +74,9 @@ fun AddStudentScreen(navController: NavController, studentViewModel: StudentView
                         studentViewModel.addStudent(Student(name = name, attendance = attendance))
                         Toast.makeText(context, "Student added successfully", Toast.LENGTH_SHORT).show()
                         navController.popBackStack()
+                    }
+                    else {
+                        Toast.makeText(context, "Name cannot be empty", Toast.LENGTH_SHORT).show()
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
